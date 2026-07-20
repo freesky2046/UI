@@ -76,26 +76,6 @@ export default function RegisterPage() {
         <form onSubmit={handleSubmit}>
           <CardContent>
             <div className="flex flex-col gap-6">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="grid gap-2">
-                  <Label htmlFor="firstName">First name</Label>
-                  <Input
-                    id="firstName"
-                    placeholder="John"
-                    required
-                    disabled={loading}
-                  />
-                </div>
-                <div className="grid gap-2">
-                  <Label htmlFor="lastName">Last name</Label>
-                  <Input
-                    id="lastName"
-                    placeholder="Doe"
-                    required
-                    disabled={loading}
-                  />
-                </div>
-              </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
