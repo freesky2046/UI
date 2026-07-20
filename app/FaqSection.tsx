@@ -36,7 +36,7 @@ export default function FaqSection() {
   }
 
   return (
-    <section className="bg-white py-16 dark:bg-neutral-950">
+    <section className="bg-gray-50 py-16 dark:bg-neutral-900">
       <div className="container mx-auto px-4 md:px-6">
         {/* 标题区 */}
         <div className="flex flex-col items-center text-center space-y-4 mb-12">

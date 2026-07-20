@@ -17,9 +17,27 @@ export default function HomeNavigationMenu() {
           <NavigationMenu.Item>
             <Link
               className={triggerClassName}
-              href="https://github.com/mui/base-ui"
+              href="/#feature"
             >
               Feature
+            </Link>
+          </NavigationMenu.Item>
+
+          <NavigationMenu.Item>
+            <Link
+              className={triggerClassName}
+              href="/settings"
+            >
+              设置
+            </Link>
+          </NavigationMenu.Item>
+
+          <NavigationMenu.Item>
+            <Link
+              className={triggerClassName}
+              href="/coupon"
+            >
+              优惠券
             </Link>
           </NavigationMenu.Item>
 

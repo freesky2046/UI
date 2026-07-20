@@ -14,6 +14,13 @@ export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted dark:bg-neutral-900 px-4">
       <Card className="w-full max-w-md">
+        {/* Brand Logo */}
+        <div className="flex flex-col items-center gap-3 pt-6">
+          <a href="/" className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-primary-foreground text-lg font-bold">
+            UI
+          </a>
+          <p className="text-xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">UI Kit</p>
+        </div>
         <CardHeader>
           <CardTitle className="text-2xl font-bold tracking-tight">
             登录您的账户
