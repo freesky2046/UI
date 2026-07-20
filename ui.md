@@ -173,3 +173,415 @@
 | 页面入场 | `transition-opacity duration-500 ease-out` |
 
 > 默认规则：只对变化的属性加 transition，避免 `transition-all`（性能开销大）。hover 用 `ease-out`，消失用 `ease-in`。
+
+---
+
+## 常见组件规范
+
+### 按钮 Button
+
+**变体 `variant`**
+
+| 变体 | 说明 | 背景/边框 | 文字色 | hover |
+|------|------|-----------|--------|-------|
+| `default` | 主按钮，用于核心 CTA | `bg-primary` | `text-primary-foreground` | `bg-primary/80` |
+| `outline` | 描边按钮，次要操作 | `border-border bg-background` | 继承 | `bg-muted` |
+| `secondary` | 二级按钮，同组辅助操作 | `bg-secondary` | `text-secondary-foreground` | 混合前景色 5% |
+| `ghost` | 幽灵按钮，工具栏/列表行操作 | 透明 | 继承 | `bg-muted` |
+| `destructive` | 危险操作按钮 | `bg-destructive/10` | `text-destructive` | `bg-destructive/20` |
+| `link` | 链接样式按钮 | 无 | `text-primary underline-offset-4` | `underline` |
+
+**尺寸 `size`**
+
+| 尺寸 | 高度 | padding | 字号 | 图标间距 | 适用场景 |
+|------|------|---------|------|----------|----------|
+| `sm` | `h-8` (32px) | `px-2` | `text-xs` | `gap-1.5` | 表格行内操作、紧凑工具栏 |
+| `default` | `h-10` (40px) | `px-3` | `text-sm` | `gap-2` | 标准按钮、表单提交 |
+| `lg` | `h-12` (48px) | `px-4` | `text-base` | `gap-2` | 登录页、Hero CTA、大按钮 |
+| `icon` | `size-10` (40px) | — | — | — | 纯图标按钮 |
+| `icon-sm` | `size-8` (32px) | — | — | — | 小图标按钮 |
+
+**使用示例**
+
+```tsx
+// 主 CTA 大按钮
+<Button size="lg">立即体验</Button>
+
+// 带图标的描边按钮
+<Button variant="outline" className="gap-2">
+  <Play /> 观看视频
+</Button>
+
+// 表内小按钮
+<Button size="sm" variant="ghost">编辑</Button>
+```
+
+---
+
+### 徽章 Badge
+
+| 变体 | 说明 | 背景 | 文字色 | 边框 |
+|------|------|------|--------|------|
+| `default` | 默认标签 | `bg-primary` | `text-primary-foreground` | 透明 |
+| `secondary` | 灰色标签，分类/状态 | `bg-secondary` | `text-secondary-foreground` | 透明 |
+| `outline` | 描边标签，版本号/公告 | 透明 | `text-foreground` | `border-border` |
+| `destructive` | 危险/错误标签 | `bg-destructive/10` | `text-destructive` | 透明 |
+| `ghost` | 弱化标签 | 透明 | 继承 | 透明(hover 显底) |
+| `link` | 链接标签 | 无 | `text-primary` | 无 |
+
+**基础样式**：`inline-flex h-5 px-2 py-1 text-xs font-normal rounded-full`，图标 `size-3`
+
+**使用示例**
+
+```tsx
+// 版本公告
+<Badge variant="outline">v2.0 已发布</Badge>
+
+// 状态标签
+<Badge variant="secondary">进行中</Badge>
+
+// 数量角标
+<Badge variant="default">99+</Badge>
+```
+
+---
+
+### 表单 Form
+
+#### 输入框 Input
+
+**基础样式**：`h-10 w-full rounded-md border border-input bg-transparent px-3 py-2 text-sm`
+
+| 状态 | 边框 | 说明 |
+|------|------|------|
+| `default` | `border-input` | 默认未聚焦 |
+| `focus` | `border-ring ring-3 ring-ring/50` | 聚焦高亮 |
+| `disabled` | — `opacity-50 cursor-not-allowed bg-input/50` | 禁用态 |
+| `invalid` | `border-destructive ring-3 ring-destructive/20` | 校验错误 |
+| `placeholder` | `text-muted-foreground` | 占位文字 |
+
+#### 标签 Label
+
+**基础样式**：`flex items-center gap-2 text-base font-medium select-none`
+
+- 与输入框联动：通过 `htmlFor` + Input `id` 绑定
+- 禁用联动：`peer-disabled:opacity-50 peer-disabled:cursor-not-allowed`
+
+#### 表单布局
+
+**垂直排列（推荐）**
+
+```tsx
+<div className="space-y-6">
+  <div className="space-y-2">
+    <Label htmlFor="email">邮箱地址</Label>
+    <Input id="email" type="email" placeholder="you@example.com" />
+  </div>
+  <div className="space-y-2">
+    <Label htmlFor="password">密码</Label>
+    <Input id="password" type="password" placeholder="请输入密码" />
+  </div>
+  <Button type="submit" size="lg" className="w-full">提交</Button>
+</div>
+```
+
+**水平排列（标签行内）**
+
+```tsx
+<div className="flex items-center gap-4">
+  <Label htmlFor="name">姓名</Label>
+  <Input id="name" placeholder="请输入" className="flex-1" />
+</div>
+```
+
+#### 常用尺寸
+
+| 高度与 padding | 适用场景 |
+|---------------|----------|
+| `h-8 px-2 text-xs` | 紧凑内联输入 | 
+| `h-10 px-3 text-sm` | **标准输入框（默认）** |
+| `h-12 px-4 text-base` | 大号输入框、登录页 |
+
+> 默认使用标准 `h-10`，与 Button 默认尺寸对齐。
+
+---
+
+### 卡片 Card
+
+**子组件**
+
+| 组件 | 说明 |
+|------|------|
+| `<Card>` | 容器，支持 `size="default" \| "sm"` |
+| `<CardHeader>` | 头部，内置 grid 布局，可容纳 Title + Description + Action |
+| `<CardTitle>` | 标题，`font-heading text-base font-medium`（sm 下 `text-sm`） |
+| `<CardDescription>` | 描述，`text-sm text-muted-foreground` |
+| `<CardContent>` | 正文区域，带 `px-(--card-spacing)` 内边距 |
+| `<CardFooter>` | 底部，带 `border-t bg-muted/50` 分隔条 |
+| `<CardAction>` | 头部操作按钮区，定位在右上角 |
+
+**基础样式**：`flex flex-col rounded-lg bg-card ring-1 ring-foreground/10`
+
+**尺寸**
+
+| size | 内边距 | 适用 |
+|------|--------|------|
+| `default` | `--card-spacing: spacing(4)` (16px) | 标准卡片 |
+| `sm` | `--card-spacing: spacing(3)` (12px) | 紧凑卡片、列表项 |
+
+**使用示例**
+
+```tsx
+// 标准卡片
+<Card>
+  <CardHeader>
+    <CardTitle>基础版</CardTitle>
+    <CardDescription>适合个人开发者和小型项目</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p className="text-3xl font-bold">$9.99< span className="text-base font-normal text-muted-foreground">/月</span></p>
+  </CardContent>
+  <CardFooter>
+    <Button className="w-full">开始使用</Button>
+  </CardFooter>
+</Card>
+
+// 带图片卡片
+<Card>
+  <img src="/hero.jpg" alt="封面" />
+  <CardHeader>
+    <CardTitle>产品名称</CardTitle>
+    <CardDescription>一句话描述</CardDescription>
+  </CardHeader>
+</Card>
+
+// 小卡片
+<Card size="sm">
+  <CardContent>紧凑内容</CardContent>
+</Card>
+```
+
+---
+
+### 表格 Table
+
+**子组件**
+
+| 组件 | 说明 | 基础样式 |
+|------|------|----------|
+| `<Table>` | 外层容器，自动 `overflow-x-auto` | `w-full caption-bottom text-sm` |
+| `<TableHeader>` | 表头区域 | `[&_tr]:border-b` |
+| `<TableBody>` | 表体区域 | `[&_tr:last-child]:border-0` |
+| `<TableFooter>` | 表尾区域 | `border-t bg-muted/50 font-medium` |
+| `<TableRow>` | 行 | `border-b hover:bg-muted/50` |
+| `<TableHead>` | 表头单元格 | `h-10 px-2 text-left font-medium whitespace-nowrap` |
+| `<TableCell>` | 数据单元格 | `p-2 align-middle whitespace-nowrap` |
+| `<TableCaption>` | 表格标题/说明 | `mt-4 text-sm text-muted-foreground` |
+
+**使用示例**
+
+```tsx
+<Table>
+  <TableCaption>最近 5 笔交易记录</TableCaption>
+  <TableHeader>
+    <TableRow>
+      <TableHead>订单号</TableHead>
+      <TableHead>金额</TableHead>
+      <TableHead>状态</TableHead>
+      <TableHead className="text-right">操作</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {orders.map((order) => (
+      <TableRow key={order.id}>
+        <TableCell className="font-medium">{order.id}</TableCell>
+        <TableCell>¥{order.amount}</TableCell>
+        <TableCell><Badge variant="secondary">{order.status}</Badge></TableCell>
+        <TableCell className="text-right">
+          <Button variant="ghost" size="sm">查看</Button>
+        </TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>
+```
+
+---
+
+### 导航 NavigationMenu
+
+**子组件**
+
+| 组件 | 说明 |
+|------|------|
+| `<NavigationMenu>` | 根容器，支持 `align="start"` |
+| `<NavigationMenuList>` | 菜单项列表，`flex gap-0` |
+| `<NavigationMenuItem>` | 单个菜单项容器 |
+| `<NavigationMenuTrigger>` | 触发器（带下拉箭头），`inline-flex h-9 rounded-lg px-3 py-1 text-base` |
+| `<NavigationMenuContent>` | 下拉内容面板 |
+| `<NavigationMenuLink>` | 菜单链接，`flex gap-2 rounded-lg p-2 text-base` |
+
+**导航链接基础样式**：`inline-flex h-9 items-center rounded-lg px-3 py-1 text-base hover:bg-muted focus:bg-muted`
+
+**使用示例**
+
+```tsx
+<NavigationMenu>
+  <NavigationMenuList>
+    <NavigationMenuItem>
+      <NavigationMenuLink href="/features">功能</NavigationMenuLink>
+    </NavigationMenuItem>
+    <NavigationMenuItem>
+      <NavigationMenuLink href="/pricing">价格</NavigationMenuLink>
+    </NavigationMenuItem>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger>产品</NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <div className="grid gap-3 p-4 w-[400px]">
+          <NavigationMenuLink href="/product-a">产品 A</NavigationMenuLink>
+          <NavigationMenuLink href="/product-b">产品 B</NavigationMenuLink>
+        </div>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+  </NavigationMenuList>
+</NavigationMenu>
+```
+
+---
+
+## 响应式断点
+
+| 前缀 | 最小宽度 | 典型设备 |
+|------|----------|----------|
+| `(无前缀)` | 0px | 手机竖屏 |
+| `sm` | 640px | 手机横屏 |
+| `md` | 768px | 平板 |
+| `lg` | 1024px | 笔记本 |
+| `xl` | 1280px | 桌面显示器 |
+| `2xl` | 1536px | 大屏桌面 |
+
+**使用模式**
+
+```tsx
+// 移动端堆叠，桌面端并排
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+// 移动端全宽，桌面端限宽居中
+<div className="max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8">
+
+// 移动端显示/隐藏
+<div className="hidden md:block">桌面端可见</div>
+<div className="block md:hidden">移动端可见</div>
+```
+
+---
+
+## 布局系统
+
+### 页面容器
+
+| 模式 | Class | 说明 |
+|------|-------|------|
+| 全宽 | `w-full` | 通栏布局，适合 Hero / Banner |
+| 标准限宽 | `max-w-screen-xl mx-auto px-4 md:px-6 lg:px-8` | 内容区默认容器 |
+| 窄限宽 | `max-w-3xl mx-auto px-4` | 文章/博客/表单页 |
+| 超窄限宽 | `max-w-md mx-auto px-4` | 登录/注册卡片 |
+
+### 栅格系统
+
+| 列数 | Class | 常用场景 |
+|------|-------|----------|
+| 1 | `grid-cols-1` | 移动端默认 |
+| 2 | `grid-cols-2` / `md:grid-cols-2` | 对比卡片、Feature 双栏 |
+| 3 | `grid-cols-3` / `lg:grid-cols-3` | 定价卡片、Feature 三栏 |
+| 4 | `grid-cols-4` / `lg:grid-cols-4` | 统计数字、图标网格 |
+
+> 推荐搭配 `gap-6`（24px）或 `gap-8`（32px）作为栅格间距。
+
+### Flex 常用布局
+
+| 需求 | Class |
+|------|-------|
+| 水平居中（单行） | `flex items-center justify-center` |
+| 水平两端对齐 | `flex items-center justify-between` |
+| 垂直堆叠居中 | `flex flex-col items-center justify-center` |
+| 自适应均分 | `flex flex-wrap gap-4 *:flex-1 *:min-w-0` |
+
+---
+
+## 图标规范
+
+| 场景 | 图标尺寸 | Class |
+|------|---------|-------|
+| 按钮内图标 | 16px | `size-4` |
+| 导航/Badge 内图标 | 12px | `size-3` |
+| 独立图标按钮 | 20px | `size-5` |
+| 页面装饰大图标 | 24px | `size-6` |
+
+| 图标与文字对齐 | 规则 |
+|---------------|------|
+| 图标在文字左侧 | 容器加 `inline-flex items-center gap-2`（推荐） |
+| 图标单独使用 | 自动继承父容器对齐 |
+
+> 图标库使用 `lucide-react`，Button 默认样式自动处理 `[&_svg]:pointer-events-none [&_svg]:shrink-0`。
+
+---
+
+## 状态指示
+
+### 加载状态
+
+| 场景 | 处理方式 |
+|------|----------|
+| 按钮提交中 | `disabled` + 图标动画替换（如 Spinner） |
+| 页面/区块加载 | 骨架屏占位（灰色脉冲动画区块） |
+| 数据获取中 | `animate-pulse bg-muted rounded` 作为骨架屏 |
+
+```tsx
+// 按钮加载态
+<Button disabled>
+  <Loader2 className="size-4 animate-spin" />
+  提交中...
+</Button>
+
+// 骨架屏
+<div className="space-y-3">
+  <div className="h-4 w-3/4 animate-pulse rounded bg-muted" />
+  <div className="h-4 w-1/2 animate-pulse rounded bg-muted" />
+</div>
+```
+
+### 空状态
+
+空状态统一使用居中布局 + 图标 + 文字 + 操作按钮：
+
+```tsx
+<div className="flex flex-col items-center justify-center py-12 text-center">
+  <div className="text-muted-foreground mb-4">
+    <Inbox className="size-12" />
+  </div>
+  <h3 className="text-lg font-medium text-foreground">暂无数据</h3>
+  <p className="mt-1 text-sm text-muted-foreground">当前还没有任何记录</p>
+  <Button variant="outline" className="mt-4">创建第一条</Button>
+</div>
+```
+
+---
+
+## 可访问性
+
+| 需求 | 实现方式 |
+|------|----------|
+| 屏幕阅读器专用文字 | `sr-only` |
+| 键盘聚焦可见 | `focus-visible:ring-3 focus-visible:ring-ring/50` |
+| 禁用元素 | `disabled:pointer-events-none disabled:opacity-50` |
+| 图标隐藏于屏幕阅读器 | `aria-hidden="true"` |
+| Form label 绑定 | `htmlFor` + `id` 关联 |
+
+**快捷键**
+
+| 场景 | Class/属性 |
+|------|-----------|
+| 禁用鼠标事件 | `pointer-events-none` |
+| 禁用文本选择 | `select-none` |
+| 禁用换行 | `whitespace-nowrap` |

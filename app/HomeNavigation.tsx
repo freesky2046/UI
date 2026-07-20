@@ -3,9 +3,17 @@ import { NavigationMenu } from "@base-ui/react/navigation-menu";
 
 export default function HomeNavigationMenu() {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto flex items-center justify-between py-6">
+      {/* Brand Logo */}
+      <a href="/" className="flex items-center gap-2 text-xl font-semibold text-neutral-950 dark:text-white">
+        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground text-sm font-bold">
+          UI
+        </div>
+        UI Kit
+      </a>
+
       <NavigationMenu.Root className="min-w-max text-neutral-950 dark:text-white">
-        <NavigationMenu.List className="relative flex gap-0.5">
+        <NavigationMenu.List className="relative flex gap-4">
           <NavigationMenu.Item>
             <Link
               className={triggerClassName}
