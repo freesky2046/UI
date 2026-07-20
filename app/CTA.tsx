@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Sparkles } from "lucide-react"
+import Link from "next/link"
 
 export default function CtaSection() {
   return (
     <section className="relative overflow-hidden bg-primary py-16 text-primary-foreground">
-      {/* 背景渐变装饰 */}
+      {/* Background gradient decoration */}
       <div className="absolute -top-24 -left-24 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-24 -right-24 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -13,28 +14,30 @@ export default function CtaSection() {
         <div className="relative z-10 max-w-3xl mx-auto space-y-6 text-center">
           <Badge variant="secondary" className="px-3 py-1 text-xs font-normal gap-1 bg-white/10 hover:bg-white/20 text-primary-foreground border-none">
             <Sparkles className="w-3.5 h-3.5" />
-            限时免费试用 14 天
+            Free to start · No credit card required
           </Badge>
 
-          <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">
-            准备好提升你的开发效率了吗？
+          <h2 className="text-2xl font-semibold tracking-tight sm:text-3xl sm:font-bold">
+            Ready to Level Up Your Amazon Sales?
           </h2>
 
           <p className="text-primary-foreground/80 text-lg font-medium max-w-2xl mx-auto leading-relaxed">
-            立即加入上万名开发者和团队的行列，用现代化 UI 模块快速构建高质量产品。无需信用卡。
+            Generate your first AI-powered listing today. Professional titles, bullet points, and A+ Content that make your products stand out from the competition.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <Button size="lg" variant="secondary" className="w-full sm:w-auto font-semibold gap-2 shadow-md">
-              免费开始使用 <ArrowRight className="w-4 h-4" />
-            </Button>
+            <Link href="/listing">
+              <Button size="lg" variant="secondary" className="w-full sm:w-auto font-semibold gap-2 shadow-md">
+                Get Started Free <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
             <Button size="lg" variant="outline" className="w-full sm:w-auto border-white/20 hover:bg-white/10 text-primary-foreground bg-transparent">
-              联系销售团队
+              Talk to Sales
             </Button>
           </div>
 
           <p className="text-xs text-primary-foreground/60 pt-2">
-            无需安装，开箱即用 • 随时可取消订阅
+            All categories supported · Native English · Amazon compliant · Available 24/7
           </p>
         </div>
       </div>

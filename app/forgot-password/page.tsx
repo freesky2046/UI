@@ -1,7 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -16,17 +15,9 @@ import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { Loader2, CheckCircle } from "lucide-react"
 
-export default function LoginPage() {
+export default function ForgotPasswordPage() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
-  const router = useRouter()
-
-  useEffect(() => {
-    if (success) {
-      const timer = setTimeout(() => router.push("/listing"), 1500)
-      return () => clearTimeout(timer)
-    }
-  }, [success, router])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -44,11 +35,16 @@ export default function LoginPage() {
           <CardContent className="flex flex-col items-center text-center gap-4 py-12">
             <CheckCircle className="size-12 text-green-600 dark:text-green-400" />
             <CardTitle className="text-2xl font-bold tracking-tight">
-              Signed in successfully!
+              Reset link sent!
             </CardTitle>
             <CardDescription>
-              Welcome back to AI Listing. Redirecting to your listing generator...
+              If an account exists for that email, we've sent a password reset link. Check your inbox.
             </CardDescription>
+            <Link href="/login">
+              <Button variant="outline" size="sm">
+                Back to sign in
+              </Button>
+            </Link>
           </CardContent>
         </Card>
       </div>
@@ -67,10 +63,10 @@ export default function LoginPage() {
         </div>
         <CardHeader>
           <CardTitle className="text-2xl font-bold tracking-tight">
-            Sign in to your account
+            Forgot your password?
           </CardTitle>
           <CardDescription>
-            Enter your email below to sign in
+            Enter your email and we'll send you a reset link
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
@@ -86,54 +82,27 @@ export default function LoginPage() {
                   disabled={loading}
                 />
               </div>
-              <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                  <Link
-                    href="/forgot-password"
-                    className="ml-auto inline-block text-sm text-muted-foreground underline-offset-4 transition-colors duration-150 hover:underline"
-                  >
-                    Forgot password?
-                  </Link>
-                </div>
-                <Input id="password" type="password" required disabled={loading} />
-              </div>
               <Button type="submit" size="lg" className="w-full" disabled={loading}>
                 {loading ? (
                   <>
                     <Loader2 className="size-4 animate-spin" />
-                    Signing in...
+                    Sending...
                   </>
                 ) : (
-                  "Sign In"
+                  "Send Reset Link"
                 )}
               </Button>
             </div>
           </CardContent>
         </form>
-        <CardFooter className="flex-col gap-3">
-          <div className="relative w-full">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
-            </div>
-          </div>
-          <Button variant="outline" className="w-full gap-2" disabled={loading}>
-            <svg className="size-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5Z" fill="currentColor"/>
-              <path d="M5 12H1M23 12H19M12 5V1M12 23V19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-            Continue with Google
-          </Button>
+        <CardFooter>
           <p className="text-sm text-center w-full text-gray-600 dark:text-gray-400">
-            Don&apos;t have an account?{" "}
+            Remember your password?{" "}
             <Link
-              href="/register"
+              href="/login"
               className="text-primary underline-offset-4 transition-colors duration-150 hover:underline"
             >
-              Sign up
+              Back to sign in
             </Link>
           </p>
         </CardFooter>

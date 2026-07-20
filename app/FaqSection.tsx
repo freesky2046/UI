@@ -7,24 +7,24 @@ import { cn } from "@/lib/utils"
 
 const faqs = [
   {
-    question: "Base UI 与 shadcn/ui 有什么区别？",
-    answer: "Base UI 是无样式的无障碍组件库，提供完整的交互逻辑和 ARIA 支持。shadcn/ui 则是基于 Radix 的预设计组件集合。两者可以互补使用，Base UI 负责底层行为，shadcn/ui 提供开箱即用的视觉风格。",
+    question: "Does the AI-generated content comply with Amazon's policies?",
+    answer: "Yes. Our AI follows Amazon's latest content guidelines, avoiding prohibited claims, trademarked terms, and exaggerated statements. We recommend a quick human review before publishing to ensure the description matches your actual product.",
   },
   {
-    question: "是否支持自定义主题？",
-    answer: "完全支持。项目基于 Tailwind CSS 构建，你可以通过修改 CSS 变量或 Tailwind 配置来调整品牌色、字体、间距等一切视觉参数。ui.md 中定义了完整的主题规范供参考。",
+    question: "Which product categories are supported?",
+    answer: "All of them — Home & Kitchen, Electronics, Sports & Outdoors, Beauty & Personal Care, Clothing & Accessories, and more. Just enter your product details and the AI tailors the copy to your specific category.",
   },
   {
-    question: "支持哪些框架？",
-    answer: "当前主要支持 Next.js（App Router），React 19+。组件库的核心逻辑与框架无关，可以迁移至 Vite、Remix 等其他 React 框架。",
+    question: "How good is the English quality?",
+    answer: "The AI produces natural, native-sounding American English that aligns with how real Amazon shoppers read and buy. No stiff translations — just clean, persuasive copy that builds trust with your customers.",
   },
   {
-    question: "可以用于生产环境吗？",
-    answer: "可以。所有组件均经过无障碍测试，支持键盘导航和屏幕阅读器。目前已有多家企业在生产环境中稳定运行，配套了完整的 TypeScript 类型定义。",
+    question: "What are the limits on the free plan?",
+    answer: "The free plan includes 3 full listing generations per day — each with title, bullet points, A+ Content, and backend search terms. Upgrade to Pro for unlimited usage.",
   },
   {
-    question: "如何获取技术支持？",
-    answer: "你可以查阅在线文档获取详细的使用指南和 API 参考。遇到具体问题时，欢迎通过 GitHub Issues 提交反馈，或加入 Discord 社区与其他开发者交流。",
+    question: "Can I save and edit the generated content?",
+    answer: "Absolutely. You can copy everything in one click, or edit and refine the output right on the page before exporting. All your history is saved automatically so you can revisit anytime.",
   },
 ]
 
@@ -38,20 +38,20 @@ export default function FaqSection() {
   return (
     <section className="bg-gray-50 py-16 dark:bg-neutral-900">
       <div className="container mx-auto px-4 md:px-6">
-        {/* 标题区 */}
+        {/* Section heading */}
         <div className="flex flex-col items-center text-center space-y-4 mb-12">
           <Badge variant="secondary" className="px-3 py-1 text-xs font-normal text-gray-500 dark:text-gray-400">
-            常见问题
+            FAQ
           </Badge>
           <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-gray-100">
-            还有疑问？这里有你想要的答案
+            Got Questions? We've Got Answers
           </h2>
           <p className="max-w-[600px] text-lg font-medium text-gray-800 dark:text-gray-200">
-            找不到你想问的？欢迎联系我们，团队会在 24 小时内回复。
+            Don't see what you're looking for? Reach out to our team — we respond within 24 hours.
           </p>
         </div>
 
-        {/* FAQ 列表 */}
+        {/* FAQ list */}
         <div className="mx-auto max-w-3xl divide-y divide-gray-200 dark:divide-neutral-800">
           {faqs.map((faq, index) => {
             const isOpen = openIndex === index

@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { Loader2, CheckCircle } from "lucide-react"
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const router = useRouter()
@@ -44,10 +44,10 @@ export default function LoginPage() {
           <CardContent className="flex flex-col items-center text-center gap-4 py-12">
             <CheckCircle className="size-12 text-green-600 dark:text-green-400" />
             <CardTitle className="text-2xl font-bold tracking-tight">
-              Signed in successfully!
+              Account created!
             </CardTitle>
             <CardDescription>
-              Welcome back to AI Listing. Redirecting to your listing generator...
+              Your account is ready. Redirecting to your listing generator...
             </CardDescription>
           </CardContent>
         </Card>
@@ -67,15 +67,35 @@ export default function LoginPage() {
         </div>
         <CardHeader>
           <CardTitle className="text-2xl font-bold tracking-tight">
-            Sign in to your account
+            Create your account
           </CardTitle>
           <CardDescription>
-            Enter your email below to sign in
+            Start generating Amazon listings in seconds
           </CardDescription>
         </CardHeader>
         <form onSubmit={handleSubmit}>
           <CardContent>
             <div className="flex flex-col gap-6">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="grid gap-2">
+                  <Label htmlFor="firstName">First name</Label>
+                  <Input
+                    id="firstName"
+                    placeholder="John"
+                    required
+                    disabled={loading}
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="lastName">Last name</Label>
+                  <Input
+                    id="lastName"
+                    placeholder="Doe"
+                    required
+                    disabled={loading}
+                  />
+                </div>
+              </div>
               <div className="grid gap-2">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -87,53 +107,39 @@ export default function LoginPage() {
                 />
               </div>
               <div className="grid gap-2">
-                <div className="flex items-center">
-                  <Label htmlFor="password">Password</Label>
-                  <Link
-                    href="/forgot-password"
-                    className="ml-auto inline-block text-sm text-muted-foreground underline-offset-4 transition-colors duration-150 hover:underline"
-                  >
-                    Forgot password?
-                  </Link>
-                </div>
-                <Input id="password" type="password" required disabled={loading} />
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="Create a password"
+                  required
+                  disabled={loading}
+                />
+                <p className="text-xs text-gray-500 dark:text-gray-500">
+                  Must be at least 8 characters
+                </p>
               </div>
               <Button type="submit" size="lg" className="w-full" disabled={loading}>
                 {loading ? (
                   <>
                     <Loader2 className="size-4 animate-spin" />
-                    Signing in...
+                    Creating account...
                   </>
                 ) : (
-                  "Sign In"
+                  "Create Account"
                 )}
               </Button>
             </div>
           </CardContent>
         </form>
-        <CardFooter className="flex-col gap-3">
-          <div className="relative w-full">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t" />
-            </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
-            </div>
-          </div>
-          <Button variant="outline" className="w-full gap-2" disabled={loading}>
-            <svg className="size-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5Z" fill="currentColor"/>
-              <path d="M5 12H1M23 12H19M12 5V1M12 23V19" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-            </svg>
-            Continue with Google
-          </Button>
+        <CardFooter>
           <p className="text-sm text-center w-full text-gray-600 dark:text-gray-400">
-            Don&apos;t have an account?{" "}
+            Already have an account?{" "}
             <Link
-              href="/register"
+              href="/login"
               className="text-primary underline-offset-4 transition-colors duration-150 hover:underline"
             >
-              Sign up
+              Sign in
             </Link>
           </p>
         </CardFooter>
