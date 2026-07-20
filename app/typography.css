@@ -1,0 +1,99 @@
+/* ==============================================
+   Typography System — 7-Level Scale
+   Based on skill.md
+   ============================================== */
+
+@layer base {
+  :root {
+    /* ---- Font Size ---- */
+    --text-scale-1: 0.75rem;    /* 12px — L1: 备注、提示、标签 */
+    --text-scale-2: 0.875rem;   /* 14px — L2: 次要说明 */
+    --text-scale-3: 1rem;       /* 16px — L3: 全局正文 */
+    --text-scale-4: 1.125rem;   /* 18px — L4: 重点提示 */
+    --text-scale-5: 1.25rem;    /* 20px — L5: 小模块标题 */
+    --text-scale-6: 1.5rem;     /* 24px — L6: 卡片主标题 */
+    --text-scale-7: 1.875rem;   /* 30px — L7: 页面大标题 */
+
+    /* ---- Line Height ---- */
+    --leading-scale-1: 1rem;
+    --leading-scale-2: 1.25rem;
+    --leading-scale-3: 1.5rem;
+    --leading-scale-4: 1.75rem;
+    --leading-scale-5: 1.75rem;
+    --leading-scale-6: 2rem;
+    --leading-scale-7: 2.25rem;
+
+    /* ---- Font Weight ---- */
+    --weight-scale-1: 400;   /* font-normal */
+    --weight-scale-2: 400;
+    --weight-scale-3: 400;
+    --weight-scale-4: 500;   /* font-medium */
+    --weight-scale-5: 500;
+    --weight-scale-6: 600;   /* font-semibold */
+    --weight-scale-7: 700;   /* font-bold */
+  }
+
+  body {
+    font-size: var(--text-scale-3);
+    line-height: var(--leading-scale-3);
+    font-weight: var(--weight-scale-3);
+  }
+}
+
+/* ---- Semantic Utility Classes ---- */
+
+/* L1: 备注、提示、标签、脚注 */
+@utility text-note {
+  font-size: var(--text-scale-1);
+  line-height: var(--leading-scale-1);
+  font-weight: var(--weight-scale-1);
+  color: var(--color-gray-500);
+}
+
+/* L2: 次要说明、表格文字 */
+@utility text-secondary {
+  font-size: var(--text-scale-2);
+  line-height: var(--leading-scale-2);
+  font-weight: var(--weight-scale-2);
+  color: var(--color-gray-600);
+}
+
+/* L3: 全局正文 */
+@utility text-body {
+  font-size: var(--text-scale-3);
+  line-height: var(--leading-scale-3);
+  font-weight: var(--weight-scale-3);
+  color: var(--color-gray-800);
+}
+
+/* L4: 卡片摘要、重点提示 */
+@utility text-emphasis {
+  font-size: var(--text-scale-4);
+  line-height: var(--leading-scale-4);
+  font-weight: var(--weight-scale-4);
+  color: var(--color-gray-800);
+}
+
+/* L5: 小模块标题、H4 */
+@utility text-heading-4 {
+  font-size: var(--text-scale-5);
+  line-height: var(--leading-scale-5);
+  font-weight: var(--weight-scale-5);
+  color: var(--color-gray-800);
+}
+
+/* L6: 卡片主标题、分区标题、H3 */
+@utility text-heading-3 {
+  font-size: var(--text-scale-6);
+  line-height: var(--leading-scale-6);
+  font-weight: var(--weight-scale-6);
+  color: var(--color-gray-900);
+}
+
+/* L7: 页面大标题、H2 */
+@utility text-heading-2 {
+  font-size: var(--text-scale-7);
+  line-height: var(--leading-scale-7);
+  font-weight: var(--weight-scale-7);
+  color: var(--color-gray-900);
+}
