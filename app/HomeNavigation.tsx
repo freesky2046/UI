@@ -42,12 +42,12 @@ export default function HomeNavigationMenu() {
         <div className="flex items-center gap-3">
           <Link
             href="/login"
-            className="text-sm font-normal text-gray-600 underline-offset-4 transition-colors duration-150 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+            className="text-base font-normal text-gray-800 underline-offset-4 transition-colors duration-150 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-100"
           >
             Sign In
           </Link>
           <Link href="/register">
-            <Button size="sm">Get Started</Button>
+            <Button size="sm" className="h-9 px-3 text-base">Get Started</Button>
           </Link>
         </div>
       </div>
@@ -58,7 +58,7 @@ export default function HomeNavigationMenu() {
 function NavLink(props: NavigationMenu.Link.Props) {
   return (
     <NavigationMenu.Link
-      className="flex h-9 items-center rounded-lg px-3 py-1 text-sm font-normal text-gray-600 no-underline select-none transition-colors duration-200 hover:bg-neutral-100 hover:text-gray-900 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-neutral-950 dark:text-gray-400 dark:hover:bg-neutral-800 dark:hover:text-gray-100 dark:focus-visible:outline-white"
+      className="flex h-9 items-center rounded-lg px-3 py-1 text-base font-normal text-gray-800 no-underline select-none transition-colors duration-200 hover:bg-neutral-100 hover:text-gray-900 focus-visible:outline-2 focus-visible:-outline-offset-1 focus-visible:outline-neutral-950 dark:text-gray-200 dark:hover:bg-neutral-800 dark:hover:text-gray-100 dark:focus-visible:outline-white"
       render={<a />}
       {...props}
     />
