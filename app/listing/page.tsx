@@ -35,7 +35,7 @@ export default function ListingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-muted dark:bg-neutral-900">
+    <div className="min-h-screen bg-muted">
       <AppNavigation />
 
       <div className="container mx-auto px-4 py-8 md:px-6">
@@ -85,7 +85,7 @@ export default function ListingPage() {
                     defaultValue="insulated water bottle, stainless steel, thermal flask, BPA free"
                     disabled={loading}
                   />
-                  <p className="text-xs text-gray-500 dark:text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     Separate keywords with commas
                   </p>
                 </div>
@@ -100,7 +100,7 @@ export default function ListingPage() {
                     }
                     disabled={loading}
                   />
-                  <p className="text-xs text-gray-500 dark:text-gray-500">
+                  <p className="text-xs text-muted-foreground">
                     One feature per line — AI will convert to Amazon bullet format
                   </p>
                 </div>
@@ -162,20 +162,20 @@ export default function ListingPage() {
                 <div className="flex flex-col gap-6">
                   {/* Product Title */}
                   <div>
-                    <p className="mb-2 text-xs font-medium text-gray-500 dark:text-gray-500">
+                    <p className="mb-2 text-xs font-medium text-muted-foreground">
                       Product Title
                     </p>
-                    <p className="text-base font-medium text-gray-800 dark:text-gray-200">
+                    <p className="text-base font-medium text-foreground">
                       Stainless Steel Vacuum Insulated Water Bottle 500ml - 24H Cold &amp; 12H Hot, BPA Free Leak-Proof Thermal Flask for Sports, Travel &amp; Outdoor
                     </p>
                   </div>
 
                   {/* Bullet Points */}
                   <div>
-                    <p className="mb-2 text-xs font-medium text-gray-500 dark:text-gray-500">
+                    <p className="mb-2 text-xs font-medium text-muted-foreground">
                       Bullet Points
                     </p>
-                    <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                    <ul className="space-y-2 text-sm text-muted-foreground">
                       <li className="flex gap-2">
                         <span className="shrink-0 text-primary font-bold">&#8226;</span>
                         DOUBLE-WALL VACUUM INSULATION: Keeps beverages cold for up to 24 hours and hot for up to 12 hours. Perfect for ice water during summer hikes or hot coffee on winter commutes.
@@ -201,31 +201,31 @@ export default function ListingPage() {
 
                   {/* Product Description */}
                   <div>
-                    <p className="mb-2 text-xs font-medium text-gray-500 dark:text-gray-500">
+                    <p className="mb-2 text-xs font-medium text-muted-foreground">
                       Product Description (A+ Content)
                     </p>
                     <div className="space-y-4">
                       <div>
-                        <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-1">
+                        <h3 className="text-base font-semibold text-foreground mb-1">
                           Premium Hydration, Engineered for Your Lifestyle
                         </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                           Whether you&apos;re conquering mountain trails or powering through back-to-back meetings, our 500ml insulated water bottle delivers the perfect temperature with every sip. Crafted from food-grade 304 stainless steel, it combines durability with clean, pure taste.
                         </p>
                       </div>
                       <div>
-                        <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-1">
+                        <h3 className="text-base font-semibold text-foreground mb-1">
                           All-Day Temperature Control
                         </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                           Advanced double-wall vacuum technology keeps ice water refreshing for 24 hours and coffee steaming hot for 12. Say goodbye to lukewarm drinks and hello to all-day satisfaction.
                         </p>
                       </div>
                       <div>
-                        <h3 className="text-sm font-semibold text-gray-800 dark:text-gray-200 mb-1">
+                        <h3 className="text-base font-semibold text-foreground mb-1">
                           Built to Last, Designed to Impress
                         </h3>
-                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                        <p className="text-sm text-muted-foreground leading-relaxed">
                           The powder-coated matte finish resists scratches and fingerprints, while the leak-proof lid gives you confidence on the go. Available in 6 colors, there&apos;s one for every personality.
                         </p>
                       </div>
@@ -234,7 +234,7 @@ export default function ListingPage() {
 
                   {/* Search Terms */}
                   <div>
-                    <p className="mb-2 text-xs font-medium text-gray-500 dark:text-gray-500">
+                    <p className="mb-2 text-xs font-medium text-muted-foreground">
                       Backend Search Terms (Hidden Keywords)
                     </p>
                     <div className="flex flex-wrap gap-1.5">
@@ -257,10 +257,10 @@ export default function ListingPage() {
                     <Sparkles className="size-6 text-primary" />
                   </div>
                   <div>
-                    <p className="text-lg font-medium text-gray-800 dark:text-gray-200">
+                    <p className="text-lg font-medium text-foreground">
                       Ready to Generate
                     </p>
-                    <p className="mt-1 text-sm text-gray-500 dark:text-gray-500">
+                    <p className="mt-1 text-sm text-muted-foreground">
                       Enter your product details on the left and hit Generate
                     </p>
                   </div>
