@@ -27,7 +27,7 @@ export default function CtaSection() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <Link href="/listing">
-              <Button size="lg" variant="secondary" className="w-full sm:w-auto font-semibold gap-2 shadow-md">
+              <Button size="lg" variant="outline" className="w-full sm:w-auto font-semibold gap-2 shadow-md bg-white text-primary hover:bg-white/90 border-white">
                 Get Started Free <ArrowRight className="w-4 h-4" />
               </Button>
             </Link>
